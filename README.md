@@ -30,7 +30,7 @@ dependencies {
 ```
 <dependency>
   <groupId>uk.co.barbuzz.chompprogressview</groupId>
-  <artifactId>beerprogressview</artifactId>
+  <artifactId>chompprogressview</artifactId>
   <version>0.0.1</version>
   <type>pom</type>
 </dependency>
@@ -46,11 +46,11 @@ The library is currently configured to be built via Gradle only. It doesn't have
 ### Usage
 For more detailed code example to use the library, Please refer to the `/sample` app.
 
-`BeerProgressView` can be added as a custom view to any layout.
+`ChompProgressView` can be added as a custom view to any layout.
 
 ```
 <uk.co.barbuzz.chompprogressview.ChompProgressView
-        android:id="@+id/beerProgressView"
+        android:id="@+id/chompProgressView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/pizza"
