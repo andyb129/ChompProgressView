@@ -22,7 +22,7 @@ To use **ChompProgressView** in your projects, simply add the library as a depen
 ##### Gradle
 ```
 dependencies {
-  compile 'uk.co.barbuzz:chompprogressview:0.0.1'
+  compile 'uk.co.barbuzz:chompprogressview:0.0.2'
 }
 ```
 
@@ -31,7 +31,7 @@ dependencies {
 <dependency>
   <groupId>uk.co.barbuzz.chompprogressview</groupId>
   <artifactId>chompprogressview</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
   <type>pom</type>
 </dependency>
 ```

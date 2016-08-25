@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
@@ -12,7 +11,6 @@ import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.ImageView;
 
 import java.util.HashMap;
@@ -174,10 +172,6 @@ public class ChompProgressImageView extends ImageView {
                     bitesTakenMap.put(biteDirection, biteCount++);*/
                     isTakeBite = true;
                 }
-                Log.i(TAG, "biteDirection:" + biteDirection + " - numBitesPerDirection:" + numBitesPerDirection);
-                for (Map.Entry<Integer, Integer> entry : bitesTakenMap.entrySet()) {
-                    Log.i(TAG, "MapValue - key:" + entry.getKey() + " value:" + entry.getValue());
-                }
             }
         } else {
             //view set to bite in one direction so just set that
@@ -185,7 +179,6 @@ public class ChompProgressImageView extends ImageView {
             hasAllBitesTaken = (numBitesForOneDirectionLeft == 0);
             if (numBitesForOneDirectionLeft!=0) {
                 biteDirection = BITE_DIRECTIONS_LIST[chompDirection];
-                Log.i(TAG, "numBitesForOneDirectionLeft:" + numBitesForOneDirectionLeft);
             }
         }
 
@@ -251,29 +244,21 @@ public class ChompProgressImageView extends ImageView {
             //get percentage of biteLine that a bite is
             bitePercent = biteRadius / biteLine;
             if (isRandomBite) {
-                Log.i(TAG, "Random percent multiply - " + (bitesTakenMap.get(biteDirection)));
                 bitePercent *= bitesTakenMap.get(biteDirection);
             } else {
-                Log.i(TAG, "Single percent multiply - " + (numBitesForOneDirection - numBitesForOneDirectionLeft));
                 bitePercent *= (numBitesForOneDirection - numBitesForOneDirectionLeft);
             }
-            Log.i(TAG, "biteRadius - " + biteRadius);
 
             //get position on biteLine with percentage above of bite
             biteX = DrawUtils.getPointBetweenTwoPoints(circleEdgeX, centerX, bitePercent);
             biteY = DrawUtils.getPointBetweenTwoPoints(circleEdgeY, centerY, bitePercent);
         }
-
-        if (isFirstBite) Log.i(TAG, "FirstBite - " + biteDirection);
-        Log.i(TAG, "biteX - " + biteX + " > biteY - " + biteY);
-        Log.i(TAG, "------------");
     }
 
     /**
      * get the current image drawable and then draw a bite out of it and re-set it
      */
     private void setBittenImage() {
-        Log.i(TAG, "BITING!!");
         Bitmap bitmap = ((BitmapDrawable)getDrawable().mutate()).getBitmap().copy(Bitmap.Config.ARGB_8888, true);
         setImageDrawable(new BitmapDrawable(getResources(), takeBite(bitmap, biteX, biteY, biteRadius, biteDirection)));
     }
@@ -305,25 +290,6 @@ public class ChompProgressImageView extends ImageView {
         Paint paint = new Paint();
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
 
-        //test paints
-        /*Paint paintGreen = new Paint();
-        paintGreen.setColor(Color.GREEN);
-        Paint paintBlue = new Paint();
-        paintBlue.setColor(Color.BLUE);
-        Paint paintRed = new Paint();
-        paintRed.setColor(Color.RED);
-
-        //draw test line for bite direction
-        Paint paintBiteDirection = new Paint();
-        paintBiteDirection.setColor(Color.GREEN);
-        paintBiteDirection.setStyle(Paint.Style.FILL);
-        c.drawLine(centerX, centerY, circleEdgeX, circleEdgeY, paintBiteDirection);
-        c.drawCircle(centerX, centerY, 30, paintBiteDirection);
-        c.drawCircle(circleEdgeX, circleEdgeY, 30, paintRed);
-        c.drawCircle(cx, cy, 30, paintBiteDirection);*/
-        //int radiusBigImage = Math.max(getDrawable().getIntrinsicWidth() / 2, getDrawable().getIntrinsicHeight() / 2);
-        //c.drawCircle(centerX, centerY, imageCircleRadius, paintBiteDirection);
-
         //large circle - teeth marks only on one half
         RectF bounds = new RectF(cx-radius, cy-radius, cx+radius, cy+radius);
         rectF.set(bounds);
@@ -354,7 +320,7 @@ public class ChompProgressImageView extends ImageView {
 
             //calculate the degrees need to adjust the small semi circles by so they sit in
             //line with the edge of the bigger semi circle to make the bite! chomp!
-            //TODO - make this a bit nice by combining into formula with numbers given
+            //TODO - make this a bit nicer by combining into formula with numbers given
             //TODO - change this so works with even numTeeth too
             int num = i+1;
             if (num > (numTeeth/2)+0.5) {

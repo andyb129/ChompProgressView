@@ -10,7 +10,6 @@ import android.support.annotation.IdRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +19,8 @@ import com.roughike.bottombar.OnMenuTabClickListener;
 
 import uk.co.barbuzz.chompprogressview.ChompProgressImageView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements ChompNoshTask.OnTaskFinishedListener {
 
     private static final String TAG = "MainActivity";
 
@@ -80,6 +80,12 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onTaskFinished() {
+        //re-enable image view onclick
+        mChompProgressImageView.setOnClickListener(mImageClickListener);
     }
 
     private void showInfoDialog() {
@@ -143,20 +149,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void eatNosh(int biteSize, Drawable imageDrawable, boolean isChompFromTop) {
-        boolean isCancelled = false;
         if (mChompNoshTask != null) {
-            isCancelled = mChompNoshTask.cancel(true);
+            mChompNoshTask.cancel(true);
             mChompNoshTask = null;
             mChompProgressImageView.setChompProgress(0);
         }
 
-        Log.i(TAG, "isCancelled? " + isCancelled);
         mChompProgressImageView.setImageDrawableChomp(imageDrawable);
         mChompProgressImageView.setChompDirection(isChompFromTop ?
                 ChompProgressImageView.ChompDirection.TOP :
                 ChompProgressImageView.ChompDirection.RANDOM);
         mChompProgressImageView.setBiteRadius(biteSize);
-        mChompNoshTask = new ChompNoshTask(mChompProgressImageView).execute(true);
+        mChompNoshTask = new ChompNoshTask(mChompProgressImageView, this).execute(true);
     }
 
     private void stopEating() {

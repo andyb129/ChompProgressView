@@ -12,8 +12,15 @@ public class ChompNoshTask extends AsyncTask<Boolean, Integer, Boolean> {
 
     private static final int SLEEP_TIME = 80;
     private final ChompProgressImageView mChompProgressImageView;
+    private final OnTaskFinishedListener mOnTaskFinishedListener;
 
-    public ChompNoshTask(ChompProgressImageView chompProgressImageView) {
+    public interface OnTaskFinishedListener {
+        void onTaskFinished();
+    }
+
+    public ChompNoshTask(ChompProgressImageView chompProgressImageView,
+                         OnTaskFinishedListener onTaskFinishedListener) {
+        mOnTaskFinishedListener = onTaskFinishedListener;
         mChompProgressImageView = chompProgressImageView;
         mChompProgressImageView.setTotalNumberOfBitesTaken(0);
     }
@@ -22,6 +29,7 @@ public class ChompNoshTask extends AsyncTask<Boolean, Integer, Boolean> {
     protected void onCancelled() {
         super.onCancelled();
         mChompProgressImageView.removeBites();
+        mOnTaskFinishedListener.onTaskFinished();
     }
 
     @Override
@@ -29,6 +37,7 @@ public class ChompNoshTask extends AsyncTask<Boolean, Integer, Boolean> {
         super.onProgressUpdate(values);
         if (values[0]==101) {
             mChompProgressImageView.removeBites();
+            mOnTaskFinishedListener.onTaskFinished();
         } else {
             mChompProgressImageView.setChompProgress(values[0]);
         }
