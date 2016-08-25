@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- wave beerProgress view -->
+    <declare-styleable name="ChompProgressView">
+        <attr name="biteRadius" format="dimension"/>
+        <attr name="chompProgress" format="integer"/>
+        <attr name="chompMax" format="integer"/>
+        <attr name="chompDirection" format="enum">
+            <enum name="top" value="0"/>
+            <enum name="bottom" value="180"/>
+            <enum name="right" value="90"/>
+            <enum name="left" value="270"/>
+            <enum name="top_right" value="45"/>
+            <enum name="top_left" value="315"/>
+            <enum name="bottom_right" value="135"/>
+            <enum name="bottom_left" value="225"/>
+        </attr>
+    </declare-styleable>
+
+    <!-- text view font -->
+    <declare-styleable name="TextViewPlus">
+        <attr name="customFont" format="string"/>
+    </declare-styleable>
+</resources>

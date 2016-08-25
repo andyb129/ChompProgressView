@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/pizza_item"
+        android:icon="@drawable/ic_action_pizza"
+        android:title="@string/pizza" />
+    <item
+        android:id="@+id/donut_item"
+        android:icon="@drawable/ic_action_donut"
+        android:title="@string/donut" />
+    <item
+        android:id="@+id/ice_cream_item"
+        android:icon="@drawable/ic_action_lolly"
+        android:title="@string/ice_cream" />
+</menu>
