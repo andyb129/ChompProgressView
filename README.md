@@ -1,5 +1,7 @@
 # Chomp Progress View 
 
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ChompProgressView-green.svg?style=true)](https://android-arsenal.com/details/1/4249)
+
 A (semi) realistic chomping progress view that takes bites out of your delicious images! Nom! Nom!
 
 * Increment progress.
