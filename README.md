@@ -1,6 +1,7 @@
 # Chomp Progress View 
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ChompProgressView-green.svg?style=true)](https://android-arsenal.com/details/1/4249)
+<br><a href="http://www.methodscount.com/?lib=uk.co.barbuzz%3Achompprogressview%3A0.0.2"><img src="https://img.shields.io/badge/Methods and size-81 | 10 KB-e91e63.svg"/></a>
 
 A (semi) realistic chomping progress view that takes bites out of your delicious images! Nom! Nom!
 
