@@ -43,8 +43,8 @@ Alternatively you can directly import the /library project into your Android Stu
 
 The library is currently configured to be built via Gradle only. It doesn't have any dependencies. :-)
 
-* Compiled SDK Version      - marshmallow-24
-* Minimum SDK Version       - >= Gingerbread-10
+* Compiled SDK Version      - Oreo-27
+* Minimum SDK Version       - >= Lollipop-14
 
 ### Usage
 For more detailed code example to use the library, Please refer to the `/sample` app.
