@@ -59,13 +59,13 @@ class MainActivity : AppCompatActivity(), ChompNoshThread.ChompNoshListener {
     }
 
     override fun onChompNoshProgress(progress: Int) {
-        content_main_chomp_progress_imageview.chompProgress = progress
+        content_main_chomp_progress_imageview.setChompProgressValue(progress);
     }
 
     override fun onChompNoshFinished() {
         //reset chomp image view
         content_main_chomp_progress_imageview.removeBites()
-        content_main_chomp_progress_imageview.chompProgress = 0
+        content_main_chomp_progress_imageview.setChompProgressValue(0);
         content_main_chomp_progress_imageview.totalNumberOfBitesTaken = 0
         //re-enable image view onclick
         content_main_chomp_progress_imageview.setOnClickListener(imageClickListener)
@@ -114,7 +114,7 @@ class MainActivity : AppCompatActivity(), ChompNoshThread.ChompNoshListener {
         }
     }
 
-    private fun eatNosh(biteSize: Int, imageDrawable: Drawable?, isChompFromTop: Boolean) {
+    private fun eatNosh(biteSize: Int, imageDrawable: Drawable, isChompFromTop: Boolean) {
         content_main_chomp_progress_imageview.setImageDrawableChomp(imageDrawable)
         content_main_chomp_progress_imageview.setChompDirection(if (isChompFromTop)
             ChompProgressImageView.ChompDirection.TOP
