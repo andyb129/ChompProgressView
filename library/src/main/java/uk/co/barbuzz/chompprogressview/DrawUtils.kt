@@ -1,11 +1,11 @@
-package uk.co.barbuzz.chompprogressview;
+package uk.co.barbuzz.chompprogressview
 
-import java.util.Random;
+import java.util.*
 
 /**
  * Created by andyb129 on 06/08/2016.
  */
-public class DrawUtils {
+object DrawUtils {
 
     /**
      * get a random number in a range of numbers
@@ -14,9 +14,9 @@ public class DrawUtils {
      * @param high
      * @return
      */
-    public static int getRandomInRange(int low, int high) {
-        Random r = new Random();
-        return r.nextInt(high - low) + low;
+    fun getRandomInRange(low: Int, high: Int): Int {
+        val r = Random()
+        return r.nextInt(high - low) + low
     }
 
     /**
@@ -33,8 +33,8 @@ public class DrawUtils {
      * @param yEnd
      * @return
      */
-    public static double getDistanceBetweenTwoPoints(float xStart, float yStart, float xEnd, float yEnd) {
-        return Math.sqrt((xStart - xEnd) * (xStart - xEnd) + (yStart - yEnd) * (yStart - yEnd));
+    fun getDistanceBetweenTwoPoints(xStart: Float, yStart: Float, xEnd: Float, yEnd: Float): Double {
+        return Math.sqrt(((xStart - xEnd) * (xStart - xEnd) + (yStart - yEnd) * (yStart - yEnd)).toDouble())
     }
 
     /**
@@ -46,7 +46,7 @@ public class DrawUtils {
      * @param percentDecimal
      * @return
      */
-    public static float getPointBetweenTwoPoints(float xStart, float xEnd, double percentDecimal) {
-        return (float) (xStart + percentDecimal * (xEnd - xStart));
+    fun getPointBetweenTwoPoints(xStart: Float, xEnd: Float, percentDecimal: Double): Float {
+        return (xStart + percentDecimal * (xEnd - xStart)).toFloat()
     }
 }
